@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">RomanCalculator</string>
+    <string name="title_activity_main">RomanCalculator</string>
+    <string name="menu_switch">Switch Arabian/Roman</string>
+    <string name="topt">Arabian -&gt; Roman</string>
+    <string name="btn_calc_txt">Calculate</string>
+    <string name="topt2">Roman -&gt; Arabian</string>
+
+</resources>
