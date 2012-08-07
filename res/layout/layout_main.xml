@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
         android:text="@string/topt"
         android:textSize="20dp" >
     </TextView>
@@ -18,21 +19,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@layout/backwithborder"
         android:inputType="number"
-        android:textSize="20dp"
-        android:background="@layout/backwithborder" />
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/calc_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
         android:textSize="20dp" >
     </TextView>
-    
-    <Button android:id="@+id/btn_calc"
+
+    <Button
+        android:id="@+id/btn_calc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_calc_txt"/>
+        android:text="@string/btn_calc_txt" 
+        android:layout_marginBottom="10dp"/>
+
+    <GridView
+        android:id="@+id/list_numbers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="2">
+    </GridView>
 
 </LinearLayout>

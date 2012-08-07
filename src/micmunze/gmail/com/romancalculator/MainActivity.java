@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,16 @@ implements View.OnClickListener {
       
       Button mBtn = (Button)findViewById(R.id.btn_calc);
       mBtn.setOnClickListener(this);
+      
+      fillData();
+   }
+   
+   private void fillData() {
+      String[] numbers = {"1", "I", "5", "V", "10", "X", "50", "L", "100", "C",
+                          "500", "D", "1000", "M"};
+      TwoColArrayAdapter adapter = new TwoColArrayAdapter(this, numbers);
+      GridView gv = (GridView)findViewById(R.id.list_numbers);
+      gv.setAdapter(adapter);
    }
    
    /**
