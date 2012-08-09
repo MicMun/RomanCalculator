@@ -3,8 +3,8 @@
     <string name="app_name">RomanCalculator</string>
     <string name="title_activity_main">RomanCalculator</string>
     <string name="menu_switch">Wechsel Arabisch/Römisch</string>
-    <string name="topt">Arabisch -&gt; Römisch</string>
     <string name="btn_calc_txt">Berechnen</string>
-    <string name="topt2">Römisch -&gt; Arabisch</string>
+    <string name="t1">Arabisch: </string>
+    <string name="t2">Römisch: </string>
 
 </resources>

@@ -1,14 +1,18 @@
 package micmunze.gmail.com.romancalculator;
 
 import android.app.Activity;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.View.OnLongClickListener;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +25,11 @@ import android.widget.Toast;
  */
 public class MainActivity 
 extends Activity 
-implements View.OnClickListener {
+implements View.OnClickListener, OnLongClickListener {
+   private static final String TAG = "RomanCalculator";
    private boolean isArabian = true; // direction to calculate
-   private TextView label = null; // title shows direction
+   private TextView label1 = null; // describe input field
+   private TextView label2 = null; // describe result field
    private TextView result = null; // result to show
    private EditText input = null; // Input number
    
@@ -35,12 +41,14 @@ implements View.OnClickListener {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.layout_main);
       
-      label = (TextView)findViewById(R.id.top_title);
+      label1 = (TextView)findViewById(R.id.t1);
+      label2 = (TextView)findViewById(R.id.t2);
       result = (TextView)findViewById(R.id.calc_number);
       input = (EditText)findViewById(R.id.input_number);
       
-      Button mBtn = (Button)findViewById(R.id.btn_calc);
+      ImageButton mBtn = (ImageButton)findViewById(R.id.btn_calc);
       mBtn.setOnClickListener(this);
+      mBtn.setOnLongClickListener(this);
       
       fillData();
    }
@@ -48,7 +56,7 @@ implements View.OnClickListener {
    private void fillData() {
       String[] numbers = {"1", "I", "5", "V", "10", "X", "50", "L", "100", "C",
                           "500", "D", "1000", "M"};
-      TwoColArrayAdapter adapter = new TwoColArrayAdapter(this, numbers);
+      ListArrayAdapter adapter = new ListArrayAdapter(this, numbers);
       GridView gv = (GridView)findViewById(R.id.list_numbers);
       gv.setAdapter(adapter);
    }
@@ -71,10 +79,12 @@ implements View.OnClickListener {
          case R.id.menu_switch:
             isArabian = !isArabian;
             if (isArabian) {
-               label.setText(R.string.topt);
+               label1.setText(R.string.t1);
+               label2.setText(R.string.t2);
                input.setInputType(InputType.TYPE_CLASS_NUMBER);
             } else {
-               label.setText(R.string.topt2);
+               label1.setText(R.string.t2);
+               label2.setText(R.string.t1);
                input.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
             }
             input.setText("");
@@ -98,11 +108,15 @@ implements View.OnClickListener {
             String roman = getRoman(arabian);
             result.setText(roman);
          } catch (NumberFormatException e) {
-            Toast.makeText(this, e.getLocalizedMessage(), 
-                           Toast.LENGTH_LONG).show();
+            Toast t = Toast.makeText(this, e.getLocalizedMessage(), 
+                                     Toast.LENGTH_LONG);
+            t.setGravity(Gravity.TOP, 20, 20);
+            t.show();
          } catch (IllegalArgumentException e) {
-            Toast.makeText(this, e.getLocalizedMessage(), 
-                           Toast.LENGTH_LONG).show();
+            Toast t = Toast.makeText(this, e.getLocalizedMessage(), 
+                                     Toast.LENGTH_LONG);
+            t.setGravity(Gravity.TOP, 20, 20);
+            t.show();
          }
       } else {
          String roman = input.getText().toString();
@@ -111,8 +125,10 @@ implements View.OnClickListener {
             String a = "" + arabian;
             result.setText(a);
          } catch (IllegalArgumentException e) {
-            Toast.makeText(this, e.getLocalizedMessage(), 
-                           Toast.LENGTH_LONG).show();
+            Toast t = Toast.makeText(this, e.getLocalizedMessage(), 
+                                     Toast.LENGTH_LONG);
+            t.setGravity(Gravity.TOP, 20, 20);
+            t.show();
          }
       }
    }
@@ -194,5 +210,27 @@ implements View.OnClickListener {
       }
       
       return roman;
+   }
+   
+   /**
+    * @see android.view.View.OnLongClickListener#onLongClick(android.view.View)
+    */
+   @Override
+   public boolean onLongClick(View v) {
+      switch (v.getId()) {
+         case R.id.btn_calc:
+            // Show Tooltip for button
+            Rect r = new Rect();
+            v.getGlobalVisibleRect(r);
+            int x = r.left;
+            int y = r.top;
+            Toast t = Toast.makeText(this, R.string.btn_calc_txt, 
+                                     Toast.LENGTH_LONG);
+            t.setGravity(Gravity.TOP, x, y);
+            t.show();
+            Log.d(TAG, "x = " + x + ", y = " + y);
+            return true;
+      }
+      return false;
    }
 }

@@ -21,13 +21,13 @@ import android.widget.TextView;
  * @author Michael Munzert
  * @version 1.0, 07.08.2012
  */
-public class TwoColArrayAdapter
+public class ListArrayAdapter
 extends BaseAdapter
 {
    private String[] list; // Listen mit Werten
    private Context mContext; // Context
    
-   public TwoColArrayAdapter(Context ctx, String[] l) {
+   public ListArrayAdapter(Context ctx, String[] l) {
       super();
       mContext = ctx;
       list =l;
