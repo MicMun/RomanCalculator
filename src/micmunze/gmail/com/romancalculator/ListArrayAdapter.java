@@ -14,9 +14,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 /**
- * TwoColArrayAdapter ist ein Adapter f&uuml;r zwei Arrays in zwei Spalten.
- * Man kann zwei Arrays &uuml;bergeben, diese werden in zwei TextViews 
- * angezeigt.
+ * ListArrayAdapter is an ArrayAdapter for a list.
+ * It creates the {@link TextView} himself.
  *
  * @author Michael Munzert
  * @version 1.0, 07.08.2012
@@ -24,9 +23,17 @@ import android.widget.TextView;
 public class ListArrayAdapter
 extends BaseAdapter
 {
-   private String[] list; // Listen mit Werten
+   private String[] list; // Lists with values
    private Context mContext; // Context
    
+   /**
+    * Creates a new ListArrayAdapter with Context and an Array of Strings.
+    * 
+    * @param  ctx
+    *         Context.
+    * @param  l
+    *         Array of Strings.
+    */
    public ListArrayAdapter(Context ctx, String[] l) {
       super();
       mContext = ctx;

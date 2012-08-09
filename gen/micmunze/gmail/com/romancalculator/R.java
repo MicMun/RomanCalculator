@@ -41,6 +41,8 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int btn_calc_txt=0x7f050005;
         public static final int menu_switch=0x7f050002;
+        public static final int msg_arabian=0x7f050007;
+        public static final int msg_roman=0x7f050006;
         public static final int t1=0x7f050003;
         public static final int t2=0x7f050004;
         public static final int title_activity_main=0x7f050001;

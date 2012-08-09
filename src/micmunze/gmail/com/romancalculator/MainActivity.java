@@ -50,10 +50,14 @@ implements View.OnClickListener, OnLongClickListener {
       mBtn.setOnClickListener(this);
       mBtn.setOnLongClickListener(this);
       
-      fillData();
+      fillData(); // Fills the GridView
    }
    
+   /**
+    * Fills the data of the grid view with the arabian and roman base numbers.
+    */
    private void fillData() {
+      // arabian and roman numbers
       String[] numbers = {"1", "I", "5", "V", "10", "X", "50", "L", "100", "C",
                           "500", "D", "1000", "M"};
       ListArrayAdapter adapter = new ListArrayAdapter(this, numbers);
@@ -76,13 +80,13 @@ implements View.OnClickListener, OnLongClickListener {
    @Override
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
-         case R.id.menu_switch:
+         case R.id.menu_switch: // switch between the calculation direction
             isArabian = !isArabian;
-            if (isArabian) {
+            if (isArabian) { // arabian to roman
                label1.setText(R.string.t1);
                label2.setText(R.string.t2);
                input.setInputType(InputType.TYPE_CLASS_NUMBER);
-            } else {
+            } else { // roman to arabian
                label1.setText(R.string.t2);
                label2.setText(R.string.t1);
                input.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
@@ -100,31 +104,31 @@ implements View.OnClickListener, OnLongClickListener {
     */
    @Override
    public void onClick(View v) {
-      if (isArabian) {
+      if (isArabian) { // arabian to roman
          String a = input.getText().toString();
          int arabian = -1;
          try {
             arabian = Integer.parseInt(a);
             String roman = getRoman(arabian);
             result.setText(roman);
-         } catch (NumberFormatException e) {
+         } catch (NumberFormatException e) { // wrong number
             Toast t = Toast.makeText(this, e.getLocalizedMessage(), 
                                      Toast.LENGTH_LONG);
             t.setGravity(Gravity.TOP, 20, 20);
             t.show();
-         } catch (IllegalArgumentException e) {
+         } catch (IllegalArgumentException e) { // error calculation
             Toast t = Toast.makeText(this, e.getLocalizedMessage(), 
                                      Toast.LENGTH_LONG);
             t.setGravity(Gravity.TOP, 20, 20);
             t.show();
          }
-      } else {
+      } else { // roman to arabian
          String roman = input.getText().toString();
          try {
             int arabian = getArabian(roman);
             String a = "" + arabian;
             result.setText(a);
-         } catch (IllegalArgumentException e) {
+         } catch (IllegalArgumentException e) { // invalid roman number
             Toast t = Toast.makeText(this, e.getLocalizedMessage(), 
                                      Toast.LENGTH_LONG);
             t.setGravity(Gravity.TOP, 20, 20);
@@ -159,9 +163,10 @@ implements View.OnClickListener, OnLongClickListener {
                hilfe[stellen] = ziffernWert[j];
                break;
             }
-         if (j == 7) 
-            throw new IllegalArgumentException 
-            ("FEHLER: Keine gueltige roemische Zahl {" + r + "}");
+         if (j == 7) {
+            String msg = getResources().getString(R.string.msg_roman);
+            throw new IllegalArgumentException(msg + r);
+         }
       }
       
       for (j=1; j < stellen; j++)
@@ -195,8 +200,8 @@ implements View.OnClickListener, OnLongClickListener {
       String roman = "";
       
       if (a <= 0 || a >= 4000) {
-         throw new IllegalArgumentException
-         ("Wert muss zwischen 1 und 3999 liegen!");
+         String msg = getResources().getString(R.string.msg_arabian);
+         throw new IllegalArgumentException(msg);
       }
       
       zahl = a;

@@ -6,5 +6,7 @@
     <string name="t1">Arabian: </string>
     <string name="t2">Roman: </string>
     <string name="btn_calc_txt">Calculate</string>
+    <string name="msg_roman">ERROR: Invalid roman number: </string>
+    <string name="msg_arabian">Value must be a value between 1 and 3999!</string>
 
 </resources>
