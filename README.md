@@ -4,7 +4,7 @@ RomanCalculator
 Calculate the roman number of an arabian number and reversed. Shows the base roman numbers with the arabian meaning.
 It is an android app, you need the android sdk to compile and build the project.
 
-License:
+<h2>License:</h2>
 
 Copyright (C) 2012  Michael Munzert
 
