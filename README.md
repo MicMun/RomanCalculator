@@ -6,7 +6,7 @@ It is an android app, you need the android sdk to compile and build the project.
 
 <h2>License:</h2>
 
-Copyright (C) 2012  Michael Munzert
+Copyright (C) 2012  MicMun
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
